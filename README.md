@@ -16,3 +16,15 @@
 - `collaboration/`
 - `document-templates/`
 - `checklists/`
+- `sops/`
+
+## 🤖 Codex 内容生产
+
+- [案例拆解 SOP](./sops/codex-case-pipeline.md)
+- [理论分析 SOP](./sops/codex-theory-pipeline.md)
+- [指令与提交速查](./sops/codex-command-reference.md)
+- [理论文章模板](./document-templates/theory-article-template.md)
+- [案例 Frontmatter 模板](./document-templates/case-frontmatter.yml)
+- [知识文章 Frontmatter 模板](./document-templates/knowledge-frontmatter.yml)
+
+案例正文、知识文章和 Demo 的实际模板分别以对应目标仓库为准。本仓库只维护跨仓库的流程、边界与写作规范。
