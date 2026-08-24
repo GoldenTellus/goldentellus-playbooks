@@ -36,4 +36,4 @@
 
 发布前，Codex 展示目标文件、内容分类、关联案例和外部来源。确认后直接提交到 `main`，例如 `feat(knowledge): add K-data-003 RAG 分块策略`。
 
-若文章引用案例，在文章 `related_cases` 中记录案例 ID，并在案例的 `related_knowledge` 中补充文章 ID。只有两边都校验通过时才报告关联完成。发布后创建不含敏感信息的“内容排期”Project 卡片并设为“已发布”。
+若文章引用案例，在文章 `related_cases` 中记录案例 ID，并在案例的 `related_knowledge` 中补充文章 ID。推送前先运行知识文章 frontmatter 校验，再对两个工作副本运行 `scripts/validate_content_links.py --cases <cases-path> --knowledge <knowledge-path>`。只有两边都校验通过时才报告关联完成。发布后创建不含敏感信息的“内容排期”Project 卡片并设为“已发布”。

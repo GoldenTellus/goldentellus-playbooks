@@ -28,3 +28,13 @@
 - [知识文章 Frontmatter 模板](./document-templates/knowledge-frontmatter.yml)
 
 案例正文、知识文章和 Demo 的实际模板分别以对应目标仓库为准。本仓库只维护跨仓库的流程、边界与写作规范。
+
+## 🔎 发布前关联校验
+
+当案例和知识文章有相互引用时，在推送前对两个本地工作副本运行：
+
+```bash
+python scripts/validate_content_links.py --cases ../goldentellus-cases --knowledge ../goldentellus-knowledge
+```
+
+该检查会验证案例和知识文章 ID 是否重复、`related_knowledge` 与 `related_cases` 是否双向一致，以及 Markdown 本地链接是否存在。组织级工作流会每 6 小时和手动触发时复核；它用于发现跨仓库不一致，不能替代推送前检查。
