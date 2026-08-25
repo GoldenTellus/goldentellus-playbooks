@@ -3,6 +3,7 @@ id: K-ROLE-XXX
 title: ""
 role: ""
 category: ""
+content_type: methodology
 difficulty: beginner
 status: draft
 source_kind: dialogue

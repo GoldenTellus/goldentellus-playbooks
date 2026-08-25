@@ -1,12 +1,12 @@
-# 🤖 Codex 理论分析 SOP
+# 🤖 Codex 知识提炼与案例学习 SOP
 
-本 SOP 用于把深度对话或已发布案例提炼为理论层内容。它适用于 `/theory-new`、`/theory-extract`、`/theory-update {id}`，以及“总结一下”“写成知识文章”等自然语言请求。
+本 SOP 用于把深度对话或已发布、已授权、已脱敏案例提炼为理论与岗位学习内容。它适用于 `/theory-new`、`/theory-extract`、`/theory-update {id}`，以及“总结一下”“写成知识文章”“从案例中提炼学习点”等自然语言请求。
 
 ## 1. 对话收集
 
 对话不设轮次上限。Codex 围绕核心观点、支撑证据、适用场景、不适用场景、前提条件和反例追问；每三轮或出现关键结论时，先给出当前理解摘要，避免把推测当作用户立场。
 
-退出条件是用户要求记录、提炼或写成文章，或输入 `/theory-extract`。进入发布前，用户必须确认核心观点、证据和适用边界可以公开。
+退出条件是用户要求记录、提炼或写成文章，或输入 `/theory-extract`。进入发布前，用户必须确认核心观点、证据和适用边界可以公开。案例学习只能引用已获授权且已脱敏的案例，不能以教学提炼为由绕过案例发布规则。
 
 ## 2. 观点结构
 
@@ -21,19 +21,26 @@
 
 文章必须显式区分“事实”“推断”“观点”。多个相互独立的观点拆成独立文章；未确认的信息写 `[待补充]`。
 
+文章使用两种内容类型：
+
+- `methodology`：原理、框架、角色工作法和通用方法。
+- `case-learning`：基于案例的单岗位学习与决策复盘，必须使用 `source_kind: case` 或 `mixed`，并至少关联一个案例 ID。
+
+案例学习文章只保留该岗位的学习价值：岗位任务与边界、已确认事实、关键决策与原因、可复用做法以及限制。完整项目背景、六段复盘、授权与脱敏信息、效果数据仍只保留在 `goldentellus-cases`。
+
 ## 3. 路由规则
 
 | 内容性质 | 目标仓库 |
 |---|---|
 | 学习顺序、能力模型、练习路径 | `goldentellus-roadmap` |
-| 原理、方法论、角色工作法 | `goldentellus-knowledge` |
+| 原理、方法论、角色工作法、岗位案例学习与决策复盘 | `goldentellus-knowledge` |
 | 已核实的外部工具、框架、文章、课程或社区 | `awesome-fde` |
 | 多来源支撑的行业判断、简报或复盘 | `goldentellus-reports` |
 
-知识文章按现有角色目录写入；全员通识进入 `00-pipeline-fundamentals`，跨角色方法进入 `99-general`。发布前先查重，重复时优先更新原文而不是建立平行条目。
+知识文章按现有角色目录写入；单岗位内容进入 `01-lead-fde` 至 `07-ops`，全员与跨角色共同语言进入 `00-pipeline-fundamentals`，行业共性模式进入 `08-industry-specific`。不设置案例正文副本目录。发布前先按标题、ID、关键词与关联案例查重，重复时优先更新原文而不是建立平行条目。
 
 ## 4. 发布与关联
 
-发布前，Codex 展示目标文件、内容分类、关联案例和外部来源。确认后直接提交到 `main`，例如 `feat(knowledge): add K-data-003 RAG 分块策略`。
+发布前，Codex 展示目标文件、内容分类、关联案例和外部来源。确认后直接提交到 `main`，例如 `feat(knowledge): add K-DATA-003 RAG 分块策略`。
 
-若文章引用案例，在文章 `related_cases` 中记录案例 ID，并在案例的 `related_knowledge` 中补充文章 ID。推送前先运行知识文章 frontmatter 校验，再对两个工作副本运行 `scripts/validate_content_links.py --cases <cases-path> --knowledge <knowledge-path>`。只有两边都校验通过时才报告关联完成。发布后创建不含敏感信息的“内容排期”Project 卡片并设为“已发布”。
+若文章引用案例，在文章 `related_cases` 中记录案例 ID，并在案例的 `related_knowledge` 中补充文章 ID。`case-learning` 必须完成这组双向关联。推送前先运行知识文章 frontmatter 校验，再对两个工作副本运行 `scripts/validate_content_links.py --cases <cases-path> --knowledge <knowledge-path>`。只有两边都校验通过时才报告关联完成。仅在用户另行明确授权时，才创建不含敏感信息的 Project 卡片。

@@ -30,6 +30,9 @@ class ContentLinkValidationTests(unittest.TestCase):
             cases,
             "by-industry/retail/case-001.md",
             """id: CASE-001
+status: published
+authorization: confirmed
+anonymization: complete
 related_knowledge: [K-ANALYST-001]
 """,
         )
@@ -37,6 +40,8 @@ related_knowledge: [K-ANALYST-001]
             knowledge,
             "02-analyst/article.md",
             """id: K-ANALYST-001
+content_type: case-learning
+source_kind: case
 related_cases: [CASE-001]
 """,
         )
@@ -47,6 +52,29 @@ related_cases: [CASE-001]
             cases, knowledge = self.create_linked_content(Path(temporary_directory))
 
             self.assertEqual(validate_content_links.validate_repositories(cases, knowledge), [])
+
+    def test_rejects_case_learning_from_unpublished_or_incomplete_case(self) -> None:
+        invalid_values = (
+            ("status", "draft", "status: published"),
+            ("authorization", "pending", "authorization: confirmed"),
+            ("anonymization", "pending", "anonymization: complete"),
+        )
+        for field, invalid_value, expected_message in invalid_values:
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as temporary_directory:
+                cases, knowledge = self.create_linked_content(Path(temporary_directory))
+                case = cases / "by-industry" / "retail" / "case-001.md"
+                case_text = case.read_text(encoding="utf-8")
+                case.write_text(
+                    case_text.replace(
+                        f"{field}: {'published' if field == 'status' else 'confirmed' if field == 'authorization' else 'complete'}",
+                        f"{field}: {invalid_value}",
+                    ),
+                    encoding="utf-8",
+                )
+
+                errors = validate_content_links.validate_repositories(cases, knowledge)
+
+                self.assertTrue(any(expected_message in error for error in errors), errors)
 
     def test_rejects_missing_reverse_relationship(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

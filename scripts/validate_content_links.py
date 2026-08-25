@@ -120,6 +120,19 @@ def validate_relationships(cases: dict[str, ContentRecord], knowledge: dict[str,
             if case is None:
                 errors.append(f"{article.path}: related case ID {case_id} was not found")
                 continue
+            if article.metadata.get("content_type") == "case-learning":
+                required_case_state = (
+                    ("status", "published"),
+                    ("authorization", "confirmed"),
+                    ("anonymization", "complete"),
+                )
+                for field, expected in required_case_state:
+                    actual = case.metadata.get(field)
+                    if actual != expected:
+                        errors.append(
+                            f"{article.path}: case-learning articles require related case {case_id} "
+                            f"to have {field}: {expected}; found {field}: {actual!r}"
+                        )
             reverse_ids, reverse_errors = related_ids(case, "related_knowledge")
             errors.extend(reverse_errors)
             if article.identifier not in reverse_ids:
