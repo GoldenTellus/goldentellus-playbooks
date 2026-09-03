@@ -32,8 +32,7 @@
 
 | 内容性质 | 目标仓库 |
 |---|---|
-| 学习顺序、能力模型、练习路径 | `goldentellus-roadmap` |
-| 原理、方法论、角色工作法、岗位案例学习与决策复盘 | `goldentellus-knowledge` |
+| 工位定位、学习顺序、能力模型、练习路径、原理、方法论、角色工作法与岗位案例学习 | `goldentellus-knowledge` |
 | 已核实的外部工具、框架、文章、课程或社区 | `awesome-fde` |
 | 多来源支撑的行业判断、简报或复盘 | `goldentellus-reports` |
 

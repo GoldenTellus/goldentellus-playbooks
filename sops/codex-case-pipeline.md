@@ -32,9 +32,9 @@
 | 条件 | 目标仓库 | 处理方式 |
 |---|---|---|
 | 经授权的完整案例叙事 | `goldentellus-cases` | 必须写入；正文唯一存于 `by-industry/<industry>/` |
-| 方案足够具体且用户允许生成演示实现 | `goldentellus-demos` | 建立使用模拟或授权数据的最小 Demo，并声明“演示用途” |
+| 方案足够具体且用户允许生成演示实现 | `goldentellus-labs` | 建立使用模拟或授权数据的最小 Demo，并声明“演示用途” |
 | 可复用 SOP、模板或检查清单 | `goldentellus-playbooks` | 新建或补充相应流程资产 |
-| 通用脚本、计算器、分析器或脚手架 | `goldentellus-toolkit` | 提供输入、输出、限制、测试和使用说明 |
+| 通用 Skill、脚本、计算器、分析器、连接器或脚手架 | `goldentellus-labs` | 按 Skill、工具、连接器、共用组件或 Demo 的层级提供输入、输出、限制、测试和使用说明 |
 | 经用户确认、可从案例提炼的岗位学习或决策复盘 | `goldentellus-knowledge` | 仅写可复用学习单元，关联案例 ID，不复制完整案例正文 |
 | 已核实的新外部资源 | `awesome-fde` | 检查链接、许可证、维护状态和重复项后追加 |
 | 多来源支撑的行业观察 | `goldentellus-reports` | 标注来源、采集时间、样本限制和结论边界 |

@@ -29,11 +29,9 @@
 | 仓库 | 格式 |
 |---|---|
 | `goldentellus-cases` | `feat(cases): add CASE-<编号> <标题>` |
-| `goldentellus-demos` | `feat(demos): add demo-<编号> <标题>` |
+| `goldentellus-labs` | `feat(labs): add <资产名>` |
 | `goldentellus-playbooks` | `feat(playbooks): add <主题>` |
-| `goldentellus-toolkit` | `feat(toolkit): add <工具名>` |
 | `goldentellus-knowledge` | `feat(knowledge): add K-<角色>-<编号> <标题>` |
-| `goldentellus-roadmap` | `docs(roadmap): update <角色或路径>` |
 | `awesome-fde` | `feat(awesome-fde): add <名称>` |
 | `goldentellus-reports` | `feat(reports): add insight <标题>` |
 
